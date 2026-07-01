@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicted Score</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f5eef8, #d6eaf8);
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-card {
+            background-color: #ffffff;
+            padding: 50px 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .result-card h2 {
+            color: #5b2c6f;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .result-card h1 {
+            color: #27ae60;
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-top: 15px;
+            color: #2c3e50;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #5b2c6f;
+            border: 2px solid #5b2c6f;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #5b2c6f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="result-card">
+    <h2>📊 Your Predicted Score</h2>
+    <h1>{{ predicted_score }}</h1>
+
+    {% if predicted_score >= 75 %}
+        <p class="message">🎉 Great job! You're on the right path. Keep up the excellent work! 💪</p>
+    {% elif predicted_score >= 50 %}
+        <p class="message">👏 You're getting there! A little more focus and you’ll ace it. 🔥</p>
+    {% else %}
+        <p class="message">💡 Don't give up! Every step counts — keep trying and you’ll succeed! 🌟</p>
+    {% endif %}
+
+    <a href="/" class="button">🔁 Try Again</a>
+</div>
+
+</body>
+</html>

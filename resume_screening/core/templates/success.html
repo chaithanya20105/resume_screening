@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Screening Result</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e6f5f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .result-container {
+            background-color: #ffffff;
+            padding: 35px 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 420px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2e615c;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #007b83;
+        }
+
+        .recommendation {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .status-strong {
+            background-color: #d4f4dc;
+            color: #2f924f;
+        }
+
+        .status-medium {
+            background-color: #fff2cc;
+            color: #a67c00;
+        }
+
+        .status-weak {
+            background-color: #f8d7da;
+            color: #b22222;
+        }
+
+        .try-again {
+            margin-top: 30px;
+        }
+
+        .try-again button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #36b69c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .try-again button:hover {
+            background-color: #2ba189;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Resume Screening Result</h1>
+
+        <p><strong>Name:</strong> <span class="highlight">{{ name }}</span></p>
+        <p><strong>Match Score:</strong> <span class="highlight">{{ score|floatformat:0 }}</span></p>
+
+        {% if score >= 70 %}
+            <p class="recommendation status-strong">Status: Highly Recommended</p>
+        {% elif score >= 40 %}
+            <p class="recommendation status-medium">Status: Consider for Interview</p>
+        {% else %}
+            <p class="recommendation status-weak">Status: Not a Strong Match</p>
+        {% endif %}
+
+        <div class="try-again">
+            <form action="{% url 'upload_resume' %}" method="get">
+                <button type="submit">Try Again</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

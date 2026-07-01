@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ranked Resumes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5fefc;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #2e615c;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #36b69c;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ranked Resumes by Match Score</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Candidate Name</th>
+                <th>File Name</th>
+                <th>TF-IDF Score</th>
+                <th>Skill Match</th>
+                <th>Final Score</th>
+                <th>Status</th>
+                <th>Matched Skills</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidate in candidates %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ candidate.name }}</td>
+                    <td>{{ candidate.filename }}</td>
+                    <td>{{ candidate.tfidf_score|floatformat:2 }}%</td>
+                    <td>{{ candidate.skill_score|floatformat:2 }}%</td>
+                    <td>{{ candidate.score }}%</td>
+                    <td class="status">{{ candidate.status }}</td>
+                    <td>{{ candidate.matched_skills }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
